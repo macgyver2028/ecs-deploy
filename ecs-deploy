@@ -174,7 +174,7 @@ fi
 if [ $CONTAINER_COUNT -eq 1  ] && [ $DESIRED_COUNT -eq 1 ]; then
   # We only have one container, so we'll need to kill off the service first
   TASK_ID=`aws ecs list-tasks --cluster respondr-messaging  --service-name dev --profile respondr  | jq '.taskArns[]' | tr "\"" " " | awk -F'/' '{print $2}'`
-  aws ecs stop-task --task TASK_ID --cluster $CLUSTER;
+  aws ecs stop-task --task $TASK_ID --cluster $CLUSTER;
 fi
 
 # Update the service
